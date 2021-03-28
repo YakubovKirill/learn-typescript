@@ -70,3 +70,4 @@ var TestComponent = /** @class */ (function (_super) {
     };
     return TestComponent;
 }(Component));
+console.log(TestComponent.prototype.print());

@@ -53,8 +53,8 @@ class TestComponent extends Component {
     summary() {
         return 23
     }
-
-
 }
+
+console.log(TestComponent.prototype.print())
 
 export{}
