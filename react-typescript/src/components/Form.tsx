@@ -23,10 +23,8 @@ export const Form: React.FC<FormProps> = (props) => {
     return (
         <div className='input-field mt2'>
             <input
-                //onChange={changeHand}
                 onKeyPress={keyPressHand}
                 ref={refer}
-                //value={title}
                 type="text"
                 id='title'
                 placeholder='Enter todo name'

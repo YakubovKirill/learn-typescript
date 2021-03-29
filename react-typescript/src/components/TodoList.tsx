@@ -3,10 +3,11 @@ import { ITodo } from '../interfaces'
 
 type ListProps = {
     todos: ITodo[]
-    onToggle: (id: number) => void
+    onToggle(id: number): void
+    onRemove(id: number): void
 }
 
-export const TodoList: React.FC<ListProps> = ({ todos, onToggle }) => {
+export const TodoList: React.FC<ListProps> = ({ todos, onToggle, onRemove }) => {
     return (
         <ul>
             {todos.map(todo => {
@@ -19,10 +20,10 @@ export const TodoList: React.FC<ListProps> = ({ todos, onToggle }) => {
                             <input
                                 type="checkbox"
                                 checked={todo.completed}
-                                onChange={onToggle.bind(null, todo.id)}
+                                onChange={() => onToggle(todo.id)}
                             />
                             <span>{todo.title}</span>
-                            <i className='material-icons red-text'>delete</i>
+                            <i className='material-icons red-text' onClick={() => onRemove(todo.id)}>delete</i>
                         </label>
                     </li>
                 )

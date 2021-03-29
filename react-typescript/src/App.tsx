@@ -11,19 +11,24 @@ function App() {
     const newTodo: ITodo = {
       title: title,
       id: Date.now(),
-      completed: false
+      completed: false,
+      changeCompletedTrue() { this.completed = true },
+      changeCompletedFalse() { this.completed = false }
     }
     setTodos(prev => [newTodo, ...prev])
   }
 
-  function toggleHand(id: number) {
-    setTodos(prev => {
-      const newArr = prev.map(todo => {
-        if(todo.id === id) todo.completed = !todo.completed
-        return todo
-      })
-      return newArr
-  })
+  const toggleHand = (id: number) => {
+    setTodos((prev) => prev.map((todo) => {
+      if(todo.id === id) {
+        if (!todo.completed) todo.changeCompletedTrue()
+      }
+      return todo
+    }))
+  }
+
+  const remove = (id: number) => {
+    setTodos((prev) => prev.filter(todo => todo.id !== id))
   }
 
   return (
@@ -32,7 +37,7 @@ function App() {
       <div className='container'>
         <h1>Hello</h1>
         <Form onAdd={addHandler}/>
-        <TodoList onToggle={toggleHand} todos={todos}  />
+        <TodoList todos={todos} onToggle={toggleHand} onRemove={remove} />
       </div>
     </div>
   );
